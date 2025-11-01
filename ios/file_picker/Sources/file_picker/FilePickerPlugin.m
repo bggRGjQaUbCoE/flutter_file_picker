@@ -180,8 +180,8 @@
 - (void)saveFileWithName:(NSString*)fileName fileType:(NSString *)fileType initialDirectory:(NSString*)initialDirectory bytes:(FlutterStandardTypedData*)bytes{
     self.isSaveFile = YES;
     NSFileManager* fm = [NSFileManager defaultManager];
-    NSURL* documentsDirectory = [fm URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask][0];
-    NSURL* destinationPath = [documentsDirectory URLByAppendingPathComponent:fileName];
+    NSURL* cachesDirectory = [fm URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask][0];
+    NSURL* destinationPath = [cachesDirectory URLByAppendingPathComponent:fileName];
     NSError* error;
     if ([fm fileExistsAtPath:destinationPath.path]) {
         [fm removeItemAtURL:destinationPath error:&error];
