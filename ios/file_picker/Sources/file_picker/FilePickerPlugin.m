@@ -413,7 +413,9 @@ didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls{
         newUrls = [NSMutableArray new];
         for (NSURL *url in urls) {
             // Create file URL to temporary folder
-            NSURL *tempURL = [NSURL fileURLWithPath:NSTemporaryDirectory()];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+            NSString *cachesDirectory = [paths firstObject];
+            NSURL *tempURL = [NSURL fileURLWithPath:cachesDirectory];
             // Append filename (name+extension) to URL
             tempURL = [tempURL URLByAppendingPathComponent:url.lastPathComponent];
             NSError *error;
